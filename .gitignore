@@ -1,0 +1,20 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+/.playwright-mcp/
+
+# Local QA diagnostics and reports
+/.qa-diagnostics/
+/.qa-reports/
+/qa-summary.json
+
+# Local configuration
+/.env
+/.env.*
+!/.env.example
+/.idea/
