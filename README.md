@@ -51,7 +51,7 @@ Both artifacts are retained for seven days. If a report exists, the workflow can
 
 The API invocation uses only the [safe summary reporter](reporters/safe-summary.ts). It writes an allowlisted JSON file without API errors, headers, call logs, or attachments. Playwright can retain a token in nested API steps in an HTML report even when API tracing is disabled. The workflow therefore publishes the HTML report produced by the UI invocation and the standalone API summary. CI also disables UI traces so the published HTML does not package browser network captures. Keep any locally generated raw API reports private.
 
-Both suites depend on public services. Restful Booker resets its shared database periodically, and availability or resets can fail a run. CI runs API scenarios sequentially and keeps retries disabled. The workflow and its artifact contents have been verified locally. A GitHub-hosted execution has yet to be verified.
+Both suites depend on public services. Restful Booker resets its shared database periodically, and availability or resets can fail a run. CI runs API scenarios sequentially and keeps retries disabled. The GitHub-hosted baseline run passed and uploaded both reports. [Baseline Actions run](https://github.com/cherevan93evgeniy/all-right-qa-automation/actions/runs/45684063438)
 
 To produce the same API summary locally, run:
 
@@ -148,6 +148,8 @@ Confirmed application defects are documented below. The main suite contains no i
 ## AI-assisted development
 
 Playwright MCP supported historical browser exploration. The automated suite runs with Playwright Test and requires no MCP connection. The AI work log records prompts, AI-assisted findings, engineering decisions, and verification evidence. [AI work log](AI_WORKLOG.md) · [UI exploration](docs/UI_EXPLORATION.md)
+
+The optional bonus converts a text scenario into a TypeScript Playwright candidate using Codex CLI with an existing ChatGPT login. Review the source and approve its SHA-256 before running that file in Chromium. Published demonstration sources can run without Codex, and the mandatory CI suite discovers its tests under `tests/`. [Bonus quick start](bonus/README.md#quick-start) · [Three demonstrations](bonus/demonstrations/README.md) · [Generation report](bonus/GENERATION_REPORT.md) · [Security model and limits](bonus/README.md#security-model)
 
 ## Project layout
 

@@ -1,0 +1,30 @@
+import { test, expect } from '../../fixtures/ui.fixture';
+import { cartProductNames } from '../../test-data/products';
+
+test('Sorts all six catalog products by price from low to high', async ({ authenticatedPage }) => {
+  const expectedProducts = [
+    { name: cartProductNames.backpack, price: 29.99 },
+    { name: cartProductNames.bikeLight, price: 9.99 },
+    { name: 'Sauce Labs Bolt T-Shirt', price: 15.99 },
+    { name: 'Sauce Labs Fleece Jacket', price: 49.99 },
+    { name: 'Sauce Labs Onesie', price: 7.99 },
+    { name: 'Test.allTheThings() T-Shirt (Red)', price: 15.99 },
+  ];
+  const expectedPrices = [7.99, 9.99, 15.99, 15.99, 29.99, 49.99];
+
+  await authenticatedPage.sortProducts('lohi');
+
+  await expect(authenticatedPage.products).toHaveCount(6);
+  await expect.poll(async () => {
+    const products = await authenticatedPage.getProductSummaries();
+    return {
+      count: products.length,
+      products,
+      prices: products.map(product => product.price),
+    };
+  }).toEqual({
+    count: 6,
+    products: expect.arrayContaining(expectedProducts),
+    prices: expectedPrices,
+  });
+});

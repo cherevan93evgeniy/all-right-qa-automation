@@ -140,6 +140,44 @@ The original `finishOrder()` body was unavailable in the reviewed project materi
 
 The publication audit reviewed 36 candidate files, checked relative Markdown links, and verified that the workflow artifact paths match the reporter outputs. The read-only `git ls-remote origin` succeeded with no advertised refs. GitHub-hosted execution and artifact upload remain unverified.
 
+### Prompt 19 — Secure Repository Publication
+
+The mandatory suite was published at commit `116fea359c29d2981916634ab3b6735bcd7b8729`. A read-only remote check verified the published HEAD. GitHub Actions run `45684063438` concluded successfully and listed both unexpired artifacts, `ui-playwright-report` and `api-test-summary`. The supplied baseline records 10 passing Chromium UI tests, four passing API tests, five documented AI mistakes, and two documented application defects. [GitHub Actions run](https://github.com/cherevan93evgeniy/all-right-qa-automation/actions/runs/45684063438)
+
+### Prompt 20 — Secure AI Test Case Generator
+
+Implement an isolated TypeScript CLI that accepts a text scenario and uses Codex CLI 0.172.0 with the developer's ChatGPT login. The model receives a small UI API reference and project instructions through standard input. Schema-checked JSON events provide the candidate. Apply an AST allowlist and strict TypeScript checking before saving a spec. Keep candidate execution behind a separate manual review and approval step. Two reviewers covered project standards and the specification, including destructuring, assertion recognition, and inherited configuration. [Bonus generator](bonus/README.md) · [Generation report](bonus/GENERATION_REPORT.md)
+
+The mandatory TypeScript check passed and Playwright discovered exactly 10 Chromium UI and four API tests. The mandatory test files, Playwright configuration, lockfile, and GitHub Actions workflow match the published commit. Prompt 20 did not rerun the live mandatory suite.
+
+Three real headless responses passed syntax, static validation, and strict TypeScript after prompt refinements for two scenarios. The exact accepted source was saved locally without edits. The invalid-login scenario passed on its first completed response. The generator withheld earlier responses for the cart and sorting cases when static checks rejected them. All 38 local diagnostics and the bonus TypeScript check passed. Bonus discovery returned zero approved tests. Execution of the generated candidates is pending human review.
+
+### Prompt 21 — Independent Bonus Code and Security Review
+
+The independent audit reviewed the actual CLI, subprocess restrictions, static validator, file handling, testing, and repository contents against the published baseline. It found that the original approval directory supplied neither explicit run selection nor hash-bound approval, and that the exact demo outputs were absent from a clean clone. The audit verified all three local hashes, repeated static validation and strict TypeScript checks, and recommended the three candidates for human approval without source corrections. Candidate discovery and execution did not run.
+
+### Prompt 22 — Bonus Security Hardening and Provider Abstraction
+
+The runner requires one explicitly selected filename. Approval binds the reviewed SHA-256 and validated source to one exclusive local record. Playwright verifies and revalidates only the selected staged copy before discovery. The Codex adapter implements the generator's provider interface. Its parser follows the pinned CLI event definitions, and the validator now rejects obvious literal-only assertions. The text-only demonstration layout is ready for later publication after manual review and actual execution. [Bonus workflow](bonus/README.md) · [Generation report](bonus/GENERATION_REPORT.md)
+
+Both TypeScript checks and all 50 local diagnostics passed. Mandatory discovery returned 10 Chromium UI and four API tests. Final code review checked repository standards and the requested behavior. The three real candidates retained their SHA-256 values, passed static validation again, and await human review and approval.
+
+### Prompt 23 — Approved Generated Test Execution and Final Bonus Audit
+
+Codex showed the complete candidates, inputs, assertions, hashes, and static and strict TypeScript results. All three original hashes matched Prompt 20. The user explicitly approved the presented filename and hash for BONUS-01 and BONUS-02. For BONUS-03, the user requested consistent string literals for product names. Codex saved the exact original source, applied the two substitutions and removed the unused import, then showed the exact diff and new hash. The user explicitly approved that revision after revalidation. [Generation report](bonus/GENERATION_REPORT.md) · [Demonstration records](bonus/demonstrations/README.md)
+
+Three separate `bonus:test` commands staged the SHA-256-approved bytes. Live SauceDemo in Chromium passed BONUS-01 in 656 ms, BONUS-02 in 516 ms, and the revised BONUS-03 in 534 ms. Each command exited 0 with zero retries. The original sort candidate stayed unexecuted. The demonstration files match their corresponding source bytes. A clean local clone with the prospective bonus files restored all three hashes and passed the cart demonstration in 596 ms using its approved hash and no Codex invocation.
+
+The final CLI also generated one separate candidate with the explicit Codex provider, the existing ChatGPT authentication flow, and no separate API key. Actual headless execution, JSONL response extraction, syntax, AST, strict TypeScript, and saving succeeded. The additional candidate stayed ignored, unapproved, and unexecuted.
+
+Both TypeScript checks passed, all 50 bonus diagnostics passed, and mandatory discovery found 14 tests. The combined live mandatory run passed 10 Chromium and four API tests in 16.4 s. Mandatory specs, workflow, primary Playwright config, and lockfile matched the published baseline. The publication audit inspected the prospective files, npm scripts, ignore rules, and CI scope. Credential and local artifact checks found no issues in the prospective files. The repository remains ready for publication review. [Bonus quick start](bonus/README.md#quick-start)
+
+### Prompt 24 — Final Bonus Publication
+
+Before publication, Codex verified that local and remote `main` matched the published baseline. Both TypeScript checks and all 50 bonus diagnostics passed. Mandatory discovery returned 10 Chromium and four API tests. The mandatory specs, fixtures, Page Objects, main Playwright configuration, workflow, and lockfile matched the baseline. Codex verified the baseline GitHub Actions result and both report artifacts and updated the README evidence. [Baseline Actions run](https://github.com/cherevan93evgeniy/all-right-qa-automation/actions/runs/45684063438)
+
+The publication checks compared the four demonstration sources with Prompt 23's hashes and the original or reviewed local bytes, checked relative Markdown links and heading anchors, and audited the Git index for unintended paths, credentials, local artifacts, and lifecycle hooks. The original BONUS-03 source is preserved as generated and unexecuted. Its reviewed revision is the version approved and executed in Prompt 23. [Demonstration records](bonus/demonstrations/README.md)
+
 ## Human Engineering Decisions
 
 - Use the public SauceDemo `standard_user` and isolate each scenario. Explicit Login scenarios open the Login page themselves. The other scenarios request authentication through a fixture. Keep credentials, expected product names, and fictional checkout data in [test-data/](test-data/).

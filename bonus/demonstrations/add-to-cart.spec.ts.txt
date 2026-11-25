@@ -1,0 +1,14 @@
+import { test, expect } from '../../fixtures/ui.fixture';
+import { cartProductNames } from '../../test-data/products';
+
+test('adds the Sauce Labs Backpack to an empty cart', async ({ authenticatedPage, cartPage, page }) => {
+  const backpack = cartProductNames.backpack;
+  const expectedProducts = [{ name: backpack, price: 29.99, quantity: 1 }];
+
+  await authenticatedPage.addProductToCart(backpack);
+  await authenticatedPage.openCart();
+
+  await expect(page).toHaveURL('/cart.html');
+  await expect(cartPage.productByName(backpack)).toBeVisible();
+  await expect.poll(() => cartPage.getProducts()).toStrictEqual(expectedProducts);
+});

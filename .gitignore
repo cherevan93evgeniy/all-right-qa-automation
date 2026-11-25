@@ -18,3 +18,14 @@ node_modules/
 /.env.*
 !/.env.example
 /.idea/
+
+# Unreviewed bonus output, local approvals, and run artifacts
+/bonus/generated/*
+!/bonus/generated/.gitkeep
+/bonus/approved/*
+!/bonus/approved/.gitkeep
+/bonus/test-results/
+/bonus/.run-*/
+/bonus/**/*.log
+/bonus/**/auth.json
+/bonus/**/.codex/

@@ -1,0 +1,16 @@
+import { test, expect } from '../../fixtures/ui.fixture';
+import { standardUser, invalidPassword } from '../../test-data/users';
+
+test('rejects an invalid password and keeps the login form usable', async ({ loginPage, inventoryPage, page }) => {
+  await loginPage.open();
+  await loginPage.login(standardUser.username, invalidPassword);
+
+  await expect(loginPage.errorMessage).toBeVisible();
+  await expect(loginPage.errorMessage).toHaveText('Epic sadface: Username and password do not match any user in this service');
+  await expect(page).toHaveURL('https://www.saucedemo.com/');
+  await expect(inventoryPage.inventoryList).toBeHidden();
+  await expect(loginPage.form).toBeVisible();
+  await expect(loginPage.usernameInput).toBeEditable();
+  await expect(loginPage.passwordInput).toBeEditable();
+  await expect(loginPage.loginButton).toBeEnabled();
+});
